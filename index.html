@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubhansh Nigam - AI/ML Developer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #16213e 100%);
+            color: #e8e8e8;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Floating code snippets background */
+        .code-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .floating-code {
+            position: absolute;
+            font-size: 12px;
+            color: #9d4edd;
+            animation: float 20s infinite linear;
+            white-space: nowrap;
+        }
+        
+        @keyframes float {
+            0% { transform: translateX(-100px) translateY(100vh) rotate(0deg); }
+            100% { transform: translateX(100vw) translateY(-100px) rotate(360deg); }
+        }
+        
+        /* Header */
+        header {
+            padding: 2rem;
+            text-align: center;
+            background: rgba(157, 78, 221, 0.1);
+            border-bottom: 2px solid #ffd700;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .name {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ffd700, #9d4edd, #ffd700);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+            margin-bottom: 0.5rem;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .title {
+            font-size: 1.2rem;
+            color: #9d4edd;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideInUp 1s ease-out 0.5s forwards;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: slideInUp 1s ease-out 1s forwards;
+        }
+        
+        .contact-item {
+            color: #ffd700;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid #9d4edd;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-item:hover {
+            background: #9d4edd;
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3);
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(26, 10, 46, 0.3);
+            border-radius: 15px;
+            border: 1px solid #9d4edd;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInScale 1s ease-out forwards;
+        }
+        
+        .section:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+        
+        .section:nth-child(odd) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::before {
+            content: '< ';
+            color: #9d4edd;
+        }
+        
+        .section-title::after {
+            content: ' />';
+            color: #9d4edd;
+        }
+        
+        /* Experience items */
+        .experience-item, .project-item {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #ffd700;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .experience-item:hover, .project-item:hover {
+            transform: translateX(10px);
+            box-shadow: -5px 5px 15px rgba(157, 78, 221, 0.2);
+        }
+        
+        .job-title {
+            font-size: 1.3rem;
+            color: #9d4edd;
+            font-weight: 600;
+        }
+        
+        .company {
+            color: #ffd700;
+            font-weight: 500;
+            margin: 0.3rem 0;
+        }
+        
+        .duration {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .bullet-point {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .bullet-point::before {
+            content: '→';
+            color: #ffd700;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        /* Skills grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-category {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid #9d4edd;
+        }
+        
+        .skill-category h4 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background: #9d4edd;
+            color: #000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            animation: pulse 2s infinite;
+        }
+        
+        .skill-tag:nth-child(even) {
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* About section */
+        .about-content {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #e8e8e8;
+            position: relative;
+            padding-left: 1rem;
+        }
+        
+        .about-text:last-child {
+            margin-bottom: 0;
+        }
+        
+        .about-text::before {
+            content: '';
+            color: #9d4edd;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            opacity: 0.7;
+        }
+        
+        /* Education and Publications */
+        .education-item, .cert-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #ffd700;
+            margin: 1rem 0;
+        }
+        
+        .degree {
+            color: #9d4edd;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .university {
+            color: #ffd700;
+            margin: 0.5rem 0;
+        }
+        
+        .gpa {
+            color: #4ade80;
+            font-weight: 600;
+        }
+        
+        /* Glitch effect for fun */
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        
+        .glitch:hover {
+            animation: glitch 0.3s;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            main {
+                padding: 1rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Terminal cursor */
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: #ffd700;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="code-bg" id="codeBg"></div>
+    
+    <header>
+        <div class="header-content">
+            <h1 class="name glitch">Shubhansh Nigam</h1>
+            <p class="title">AI/ML Developer & Computer Science Engineer<span class="cursor"></span></p>
+            <div class="contact-info">
+                <a href="mailto:shubhansh.nigam03@gmail.com" class="contact-item">📧 Email</a>
+                <a href="tel:+919936219966" class="contact-item">📱 +91 993 621 99 66</a>
+                <a href="https://linkedin.com/in/ShubhanshNigam" class="contact-item">💼 LinkedIn</a>
+                <a href="https://github.com/ShubhanhNigam" class="contact-item">🐙 GitHub</a>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="section">
+            <h2 class="section-title">About Me</h2>
+            
+            <div class="about-content">
+                <p class="about-text">
+                    I'm a passionate AI/ML developer and Computer Science Engineering student at VIT with a strong foundation in machine learning, deep learning, and software development. My journey in technology has been driven by curiosity and a desire to solve real-world problems through innovative AI solutions.
+                </p>
+                <p class="about-text">
+                    With hands-on experience in developing multimodal AI systems, neural networks for material science applications, and smart IoT devices, I thrive at the intersection of theoretical knowledge and practical implementation. My work spans from building AI-powered judiciary systems to creating safety-critical smart helmet technology.
+                </p>
+                <p class="about-text">
+                    When I'm not coding or training models, you'll find me exploring the latest developments in LLMs and transformer architectures, contributing to open-source projects, or competing in programming contests. I believe in continuous learning and am always excited to tackle new challenges in the ever-evolving world of artificial intelligence.
+                </p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="experience-item">
+                <h3 class="job-title">AI/ML Intern</h3>
+                <p class="company">ValueLeaf IT Solutions</p>
+                <p class="duration">May 2025 – July 2025</p>
+                <div class="bullet-point">Worked with a team to develop and deploy a multimodal AI to shortlist candidates based on their resume.</div>
+                <div class="bullet-point">Developed real-time automated audio and video functionality for interviews using WebRTC and Agentic AI.</div>
+                <div class="bullet-point">Developed a model that dynamically generates personalized audio/video interview questions by analyzing job descriptions and candidate resumes using NLP and LLMs.</div>
+                <div class="bullet-point">Integrated end-to-end pipeline involving speech-to-text, AWS ECS, Fargate, improving interview experience automation and candidate assessment efficiency.</div>
+            </div>
+            
+            <div class="experience-item">
+                <h3 class="job-title">Research Intern</h3>
+                <p class="company">IIIT Hyderabad</p>
+                <p class="duration">May 2024 – June 2024</p>
+                <div class="bullet-point">Used Machine Learning and Deep Learning to predict polymer material properties of interest.</div>
+                <div class="bullet-point">Used multiple frameworks and developed a recurrent neural network algorithm for a better performance model. Achieved the highest refractive index prediction accuracy among the currently available models.</div>
+                <div class="bullet-point">Gained a better understanding of various deep learning algorithms and successfully applied them to real-world data in the Material Science domain to predict polymer properties of interest.</div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="project-item">
+                <h3 class="job-title">Smart Verdict Assistant</h3>
+                <div class="bullet-point">Built an AI-powered search engine for the judiciary system, gaining experience with machine learning, natural language processing (NLP), and legal data retrieval challenges.</div>
+                <div class="bullet-point">Learned about training domain-specific AI models, handling complex legal terminology, contextual understanding, and precedent-based reasoning.</div>
+            </div>
+            
+            <div class="project-item">
+                <h3 class="job-title">Smart Helmet</h3>
+                <div class="bullet-point">Developed a helmet with smart crash detection, gaining experience with sensor fusion, real-time data processing, and machine learning in safety-critical systems.</div>
+                <div class="bullet-point">Integrated multiple sensors (accelerometers, gyroscopes, GPS, pressure sensors) to detect crashes accurately while minimizing false positives.</div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Skills</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Languages</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Arduino</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Tools & Libraries</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Tkinter</span>
+                        <span class="skill-tag">Seaborn</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Technologies</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Machine Learning</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Supervised Learning</span>
+                        <span class="skill-tag">Unsupervised Learning</span>
+                        <span class="skill-tag">Deep Learning</span>
+                        <span class="skill-tag">Reinforcement Learning</span>
+                        <span class="skill-tag">LLMs</span>
+                        <span class="skill-tag">Transformers</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="education-item">
+                <h3 class="degree">B.Tech in Computer Science Engineering</h3>
+                <p class="university">Vellore Institute of Technology</p>
+                <p class="duration">Aug 2023 – July 2027</p>
+                <p class="gpa">GPA: 8.56 (Current)</p>
+                <div class="bullet-point"><strong>Coursework:</strong> Data Structures and Algorithms, Design and Analysis of Algorithms, Computational Theory</div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Publications & Certifications</h2>
+            
+            <div class="cert-item">
+                <h3 class="degree">Smart Helmet Patent</h3>
+                <p class="duration">June 2024</p>
+                <div class="bullet-point">Patent Published for a Smart Helmet</div>
+            </div>
+            
+            <div class="cert-item">
+                <h3 class="degree">Machine Learning Specialization</h3>
+                <p class="university">Coursera</p>
+                <div class="bullet-point">Completed comprehensive Machine Learning course</div>
+            </div>
+            
+            <div class="cert-item">
+                <h3 class="degree">Competitive Programming</h3>
+                <p class="university">CodeChef</p>
+                <div class="bullet-point">Achieved 3-star rating in competitive coding contests</div>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        // Create floating code snippets
+        const codeSnippets = [
+            'import tensorflow as tf',
+            'def predict_model():',
+            'neural_network.fit(X, y)',
+            'from sklearn import *',
+            'AWS_ECS.deploy()',
+            'model = Sequential()',
+            'np.array([[1, 2]])',
+            'git commit -m "feat"',
+            'docker run -p 8080',
+            'def train_rnn():',
+            'pytorch.tensor()',
+            'nlp.process(text)',
+            'webrtc.connect()',
+            'api.predict(data)',
+            'ml_pipeline.run()',
+        ];
+        
+        function createFloatingCode() {
+            const codeBg = document.getElementById('codeBg');
+            const snippet = document.createElement('div');
+            snippet.className = 'floating-code';
+            snippet.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+            snippet.style.left = Math.random() * 100 + 'vw';
+            snippet.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            snippet.style.animationDelay = Math.random() * 5 + 's';
+            codeBg.appendChild(snippet);
+            
+            // Remove after animation
+            setTimeout(() => {
+                if (snippet.parentNode) {
+                    snippet.parentNode.removeChild(snippet);
+                }
+            }, 25000);
+        }
+        
+        // Create floating code snippets periodically
+        setInterval(createFloatingCode, 2000);
+        
+        // Create initial batch
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createFloatingCode, i * 500);
+        }
+        
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Add some interactive hover effects
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', () => {
+                tag.style.transform = 'scale(1.1) rotate(' + (Math.random() * 10 - 5) + 'deg)';
+                tag.style.background = '#ffd700';
+                tag.style.color = '#000';
+            });
+            
+            tag.addEventListener('mouseleave', () => {
+                tag.style.transform = 'scale(1) rotate(0deg)';
+                tag.style.background = '#9d4edd';
+                tag.style.color = '#000';
+            });
+        });
+    </script>
+</body>
+</html>
